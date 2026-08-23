@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import basicSsl from '@vitejs/plugin-basic-ssl'
-
 export default defineConfig({
+  base: '/Space-Droper/',
   plugins: [
     react(),
     basicSsl(), // generates a self-signed cert so WebXR (HTTPS-only) works over LAN
