@@ -96,7 +96,11 @@ function ARContent({
         />
       )}
 
-      <PlacedObjects placedItems={placedItems} />
+      {/* Only draw placed items once a real session is tracking the device —
+          otherwise this canvas (mounted pre-session so AR can attach quickly)
+          would render its own untracked copy of every object underneath
+          whatever's actually driving the camera. */}
+      {session && <PlacedObjects placedItems={placedItems} />}
     </>
   )
 }

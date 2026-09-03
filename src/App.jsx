@@ -158,8 +158,11 @@ export default function App() {
   return (
     <>
       {/* ── WebXR canvas — always mounted when supported so the session can attach.
-            Transparent + invisible until the session starts.                  */}
-      {xrSupported && (
+            Transparent + invisible until the session starts. Unmounted once the
+            camera fallback is chosen instead — otherwise it keeps rendering
+            placedItems from its own untracked camera underneath the fallback
+            canvas, showing through as a duplicate of whatever you just placed. */}
+      {xrSupported && !cameraRunning && (
         <ARScene
           placedItems={placedItems}
           onPlace={handlePlace}
